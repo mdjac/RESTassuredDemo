@@ -77,5 +77,13 @@ public class MovieResource {
         return Response.ok(gson.toJson(dto), MediaType.APPLICATION_JSON).build();
     }
     
-    
+    @Path("add")
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public String addMovie (String movie){
+        MovieDTO mvDTO = gson.fromJson(movie, MovieDTO.class);
+        mvDTO = FACADE.create(mvDTO);
+        return gson.toJson(mvDTO);
+    }
 }
